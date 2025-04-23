@@ -14,7 +14,7 @@
 
 int	ft_printf(const char *s, ...)
 {
-	printf("\n%s\nA", s);
-
+	printf("%s", s);
+	printf("\n%li\n", ft_strlen(s));
 	return (0);
 }

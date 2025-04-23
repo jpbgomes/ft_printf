@@ -1,9 +1,9 @@
-#include "libft/libft.h"
+#include "ft_printf.h"
 
-int	main()
+int main()
 {
-	char myStr[] = "Hello, world!";
-	ft_printf("\n%c\n", myStr);
-
-	return (0);
+    char myStr[] = "Hello, world!";
+    ft_printf("\n%s\n", myStr);
+    return (0);
 }
+

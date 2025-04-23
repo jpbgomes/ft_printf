@@ -1,32 +1,29 @@
 NAME = libftprintf.a
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Wextra -Werror
 SRCFILES = libftprintf.c
-OBJFILES = ${SRCFILES:.c=.o}
+OBJFILES = $(SRCFILES:.c=.o)
 LIBFT_DIR = libft
-LIBFT_LIB = ${LIBFT_DIR}/libft.a
+LIBFT = $(LIBFT_DIR)/libft.a
+INCLUDES = -I$(LIBFT_DIR)
 
 .PHONY: all clean fclean re test
 
-all: $(LIBFT_LIB) $(NAME)
+all: $(NAME)
 
-$(LIBFT_LIB):
+$(NAME): $(OBJFILES)
 	make -C $(LIBFT_DIR)
-
-$(NAME): $(OBJFILES) $(LIBFT_LIB)
-	ar rcs $(NAME) $(OBJFILES) $(LIBFT_LIB)
-
-%.o: %.c
-	cc $(FLAGS) -I$(LIBFT_DIR) -c $< -o $@
+	ar rcs $(NAME) $(OBJFILES)
 
 clean:
-	rm -f $(OBJFILES)
+	rm -f $(OBJFILES) a.out
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME) main.o
+	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-test: re
-	cc main.c $(FLAGS) -Ilibft -L. -lftprintf -Llibft -lft -o main.o && ./main.o
+test: all
+	cc main.c $(SRCFILES) $(FLAGS) $(LIBFT) $(INCLUDES) -o a.out && ./a.out
+
