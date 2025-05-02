@@ -1,7 +1,10 @@
 NAME = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
 SRCFILES = libftprintf.c libftprintf_utils.c
 OBJFILES = $(SRCFILES:.c=.o)
+
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDES = -I$(LIBFT_DIR)
@@ -11,33 +14,25 @@ INCLUDES = -I$(LIBFT_DIR)
 all: $(NAME)
 
 $(NAME): $(OBJFILES) $(LIBFT)
-	# Create libftprintf.a with ft_printf objects
-	ar rcs $(NAME) $(OBJFILES)
-	# Extract libft.a objects and add them to libftprintf.a
-	(cd $(LIBFT_DIR) && ar x libft.a)
-	# Move extracted objects to current directory
-	mv $(LIBFT_DIR)/*.o .
-	# Add libft objects to libftprintf.a
-	ar rcs $(NAME) *.o
-	# Clean up extracted objects
-	rm -f *.o
-	ranlib $(NAME)
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+	cp $(LIBFT) .
+	ar -rcs $(NAME) $(OBJFILES) libft.a
+	rm -f libft.a
 
 %.o: %.c
-	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	rm -f $(OBJFILES) a.out
-	make -C $(LIBFT_DIR) clean
+	rm -f $(OBJFILES) test.out
+	$(MAKE) clean -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
 test: all
-	cc main.c $(NAME) $(FLAGS) $(INCLUDES) -o a.out && ./a.out
+	$(CC) main.c $(NAME) $(CFLAGS) $(INCLUDES) -o test.out && ./test.out
