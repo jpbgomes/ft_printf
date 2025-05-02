@@ -1,18 +1,43 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
 int main()
 {
-    ft_printf("%s\n", "Hello, world!");
-    ft_printf("%p\n", "Hello, world!");
-    ft_printf("%d\n", -1234);
-    ft_printf("%i\n", -1234);
-    ft_printf("%u\n", -1234);
-    ft_printf("%x\n", -1234);
-    ft_printf("%X\n", -1234);
-    ft_printf("%cbcd%%\n", 'a');
+    printf(" %% \n");
+    printf(" %%%% \n");
+    printf(" %% %% %% \n");
+    printf(" %%  %%  %% \n");
+    printf(" %%   %%   %% \n");
+    printf("%%\n");
+    printf("%% %%\n\n");
+
+    ft_printf(" %% \n");
+    ft_printf(" %%%% \n");
+    ft_printf(" %% %% %% \n");
+    ft_printf(" %%  %%  %% \n");
+    ft_printf(" %%   %%   %% \n");
+    ft_printf("%%\n");
+    ft_printf("%% %%\n");
+
+    ft_printf("\n\n");
+    // printf(" NULL %s NULL ", NULL);
+    ft_printf(" NULL %s NULL ", NULL);
+
+    ft_printf("\n\n");
+	// ft_printf("%p %p \n", INT_MIN, INT_MAX);
+	// ft_printf("%p %p \n", LONG_MIN, LONG_MAX);
+	// ft_printf("%p %p \n", ULONG_MAX, -ULONG_MAX);
+	// printf("%p %p \n", 0, 0);
+	ft_printf("%p %p \n", 0, 0);
+
+    // ft_printf("\n\n");
+    // ft_printf("%u \n", LONG_MAX);
+    // ft_printf("%u \n", LONG_MIN);
+    // ft_printf("%u \n", ULONG_MAX);
+    // ft_printf("%u \n", 9223372036854775807LL);
+    // ft_printf("%u %u %u %u %u %u %u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
     return (0);
 }
-
 
 /*
     va_list: A type that holds information about the variable arguments.

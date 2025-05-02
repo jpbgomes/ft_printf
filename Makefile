@@ -10,9 +10,24 @@ INCLUDES = -I$(LIBFT_DIR)
 
 all: $(NAME)
 
-$(NAME): $(OBJFILES)
-	make -C $(LIBFT_DIR)
+$(NAME): $(OBJFILES) $(LIBFT)
+	# Create libftprintf.a with ft_printf objects
 	ar rcs $(NAME) $(OBJFILES)
+	# Extract libft.a objects and add them to libftprintf.a
+	(cd $(LIBFT_DIR) && ar x libft.a)
+	# Move extracted objects to current directory
+	mv $(LIBFT_DIR)/*.o .
+	# Add libft objects to libftprintf.a
+	ar rcs $(NAME) *.o
+	# Clean up extracted objects
+	rm -f *.o
+	ranlib $(NAME)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+%.o: %.c
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -f $(OBJFILES) a.out
@@ -25,5 +40,4 @@ fclean: clean
 re: fclean all
 
 test: all
-	cc main.c $(SRCFILES) $(FLAGS) $(LIBFT) $(INCLUDES) -o a.out && ./a.out
-
+	cc main.c $(NAME) $(FLAGS) $(INCLUDES) -o a.out && ./a.out
