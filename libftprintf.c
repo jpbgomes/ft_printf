@@ -6,7 +6,7 @@
 /*   By: jpedro-b <jpedro-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 17:29:38 by jpedro-b          #+#    #+#             */
-/*   Updated: 2025/05/02 12:08:47 by jpedro-b         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:23:22 by jpedro-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,13 +151,13 @@ int	ft_printf(const char *s, ...)
 			if (s[i] == 'x')
 			{
 				int nbr = (int)va_arg(args, int);
-				total_len += ft_putnbr_base((unsigned long)nbr, "0123456789abcdef");
+				total_len += ft_putnbr_base((unsigned int)nbr, "0123456789abcdef");
 			}
 
 			if (s[i] == 'X')
 			{
 				int nbr = (int)va_arg(args, int);
-				total_len += ft_putnbr_base((unsigned long)nbr, "0123456789ABCDEF");
+				total_len += ft_putnbr_base((unsigned int)nbr, "0123456789ABCDEF");
 			}
 
 			if (s[i] == '%')
