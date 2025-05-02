@@ -49,6 +49,15 @@ int main()
     // ft_printf(" %x \n", 9223372036854775807LL);
     // ft_printf(" %x %x %x %x %x %x %x\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
     // ft_printf(" %x \n", -42);
+
+    ft_printf("%s\n", "Hello, world!");
+    ft_printf("%p\n", "Hello, world!");
+    ft_printf("%d\n", -1234);
+    ft_printf("%i\n", -1234);
+    ft_printf("%u\n", -1234);
+    ft_printf("%x\n", -1234);
+    ft_printf("%X\n", -1234);
+    ft_printf("%cbcd%%\n", 'a');
     return (0);
 }
 

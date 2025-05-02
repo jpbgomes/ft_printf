@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
-SRCFILES = libftprintf.c
+SRCFILES = libftprintf.c libftprintf_utils.c
 OBJFILES = $(SRCFILES:.c=.o)
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
