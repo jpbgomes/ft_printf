@@ -1,4 +1,0 @@
-# TODO
-- Norm
-- Header
-- Tester
